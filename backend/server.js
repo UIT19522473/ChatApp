@@ -1,5 +1,7 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
+const chatRoutes = require("./routes/chatRoutes");
+const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 require("dotenv").config();
@@ -13,8 +15,12 @@ const app = express();
 app.use(express.json()); // to accept json data
 
 app.use("/api/user", userRoutes);
-// app.use("/api/chat", chatRoutes);
-// app.use("/api/message", messageRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/message", messageRoutes);
+
+// app.get("/api/chat", (req, res) => {
+//   res.send(chats);
+// });
 
 // Error Handling middlewares
 app.use(notFound);

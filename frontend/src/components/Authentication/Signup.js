@@ -20,69 +20,70 @@ const Signup = () => {
   const [pic, setPic] = useState();
   const [picLoading, setPicLoading] = useState(false);
 
-  // const submitHandler = async () => {
-  //   setPicLoading(true);
-  //   if (!name || !email || !password || !confirmpassword) {
-  //     toast({
-  //       title: "Please Fill all the Feilds",
-  //       status: "warning",
-  //       duration: 5000,
-  //       isClosable: true,
-  //       position: "bottom",
-  //     });
-  //     setPicLoading(false);
-  //     return;
-  //   }
-  //   if (password !== confirmpassword) {
-  //     toast({
-  //       title: "Passwords Do Not Match",
-  //       status: "warning",
-  //       duration: 5000,
-  //       isClosable: true,
-  //       position: "bottom",
-  //     });
-  //     return;
-  //   }
-  //   console.log(name, email, password, pic);
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         "Content-type": "application/json",
-  //       },
-  //     };
-  //     const { data } = await axios.post(
-  //       "/api/user",
-  //       {
-  //         name,
-  //         email,
-  //         password,
-  //         pic,
-  //       },
-  //       config
-  //     );
-  //     console.log(data);
-  //     toast({
-  //       title: "Registration Successful",
-  //       status: "success",
-  //       duration: 5000,
-  //       isClosable: true,
-  //       position: "bottom",
-  //     });
-  //     localStorage.setItem("userInfo", JSON.stringify(data));
-  //     setPicLoading(false);
-  //     history.push("/chats");
-  //   } catch (error) {
-  //     toast({
-  //       title: "Error Occured!",
-  //       description: error.response.data.message,
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //       position: "bottom",
-  //     });
-  //     setPicLoading(false);
-  //   }
-  // };
+  const submitHandler = async () => {
+    console.log("hello");
+    setPicLoading(true);
+    if (!name || !email || !password || !confirmpassword) {
+      toast({
+        title: "Please Fill all the Feilds",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setPicLoading(false);
+      return;
+    }
+    if (password !== confirmpassword) {
+      toast({
+        title: "Passwords Do Not Match",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
+    console.log(name, email, password, pic);
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/user",
+        {
+          name,
+          email,
+          password,
+          pic,
+        },
+        config
+      );
+      console.log(data);
+      toast({
+        title: "Registration Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setPicLoading(false);
+      history.push("/chats");
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setPicLoading(false);
+    }
+  };
 
   const postDetails = (pics) => {
     setPicLoading(true);
@@ -101,8 +102,8 @@ const Signup = () => {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
-      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+      data.append("cloud_name", "dstmx3yah");
+      fetch("https://api.cloudinary.com/v1_1/dstmx3yah/image/upload", {
         method: "post",
         body: data,
       })
@@ -189,7 +190,7 @@ const Signup = () => {
         colorScheme="blue"
         width="100%"
         style={{ marginTop: 15 }}
-        // onClick={submitHandler}
+        onClick={submitHandler}
         isLoading={picLoading}
       >
         Sign Up
